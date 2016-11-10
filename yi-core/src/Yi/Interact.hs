@@ -66,6 +66,7 @@ module Yi.Interact
      accepted
     ) where
 
+import           Yi.String           (showT)
 import           Control.Applicative (Alternative ((<|>), empty))
 import           Control.Arrow       (first)
 import           Lens.Micro.Platform          (_1, _2, view)
@@ -193,10 +194,6 @@ accepted d (Prior _ p) = accepted d p
 accepted d (Best p q) = accepted d p ++ accepted d q
 accepted _ End = []
 accepted _ (Chain _ _) = error "accepted: chain not supported"
-
--- Utility function
-showT :: Show a => a -> T.Text
-showT = T.pack . show
 
 -- ---------------------------------------------------------------------------
 -- Operations over P
